@@ -22,5 +22,5 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    - run: echo $(date) >> date.txt
+    - run: echo $(date) >> date.txt && exit 1
 
