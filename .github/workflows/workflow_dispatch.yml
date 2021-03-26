@@ -1,0 +1,19 @@
+name: Manually triggered workflow
+on:
+  workflow_dispatch:
+    inputs:
+      args:
+        description: 'args'
+        required: false
+
+jobs:
+  run:
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: yseto/playground-action@test3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - run: echo $(date) >> date.txt
+
