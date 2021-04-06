@@ -18,9 +18,19 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - uses: yseto/playground-action@test3
+    - uses: yseto/playground-action@test4
+      id: start
+      with:
+        mode: start
+
+#   - run: echo $(date) >> date.txt && exit 1
+    - run: echo $(date) >> date.txt
+
+    - uses: yseto/playground-action@test4
+      if: success()
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-
-    - run: echo $(date) >> date.txt && exit 1
+        mode: finish
+        seconds: ${{ steps.start.outputs.seconds }}
+        branchName: ${{ steps.start.outputs.branchName }}
 
